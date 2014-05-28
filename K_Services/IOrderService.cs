@@ -37,7 +37,8 @@ namespace K_Services
         [DataMember]
         public Dictionary<MenuItemInfo, int> itemAndQuantity
         {
-            get { return new Dictionary<MenuItemInfo,int>(_itemAndQuantity); }
+            get { return _itemAndQuantity; }
+            set { _itemAndQuantity = value; }
         }
     }
 
@@ -54,11 +55,13 @@ namespace K_Services
         public Guid orderID
         {
             get { return _orderID; }
+            set { _orderID = value; }
         }
         [DataMember]
         public TimeSpan created
         {
             get { return _created; }
+            set { _created = value; }
         }
         [DataMember]
         public TimeSpan pickup
@@ -75,7 +78,8 @@ namespace K_Services
         [DataMember]
         public Dictionary<MenuItemInfo, bool> itemAndIsStarted
         {
-            get { return new Dictionary<MenuItemInfo,bool>(_itemAndIsStarted); }
+            get { return _itemAndIsStarted; }
+            set { _itemAndIsStarted = value; }
         }
     }
 }
