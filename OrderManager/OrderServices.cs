@@ -9,242 +9,359 @@ using System.Collections.Generic;
 
 //Class for testing and debugging order services classes.
 class TestClass
-    {
-    //Main method of the TestClass class
-        public static void Main (string[] args)
-        {
-        //Output to the console text
-            Console.WriteLine ("Order at Kartopia!");
-        }
-
-    }
+	{
+	//Main method of the TestClass class
+		public static void Main (string[] args)
+	{
+		//Output to the console text
+		Console.WriteLine ("Order at Kartopia!");
+	}
+	}
 //Class for managing a menu item object
-    class MenuItem
-    {
+	class MenuItem
+	{
 //MenuItem class default constructor
-        public MenuItem()
-        {
+		public MenuItem()
+		{
 //Set data members to zero vales
-            cost = 0;
-            name = null;
-        }
+			cost = 0;
+			name = null;
+		}
 //MenuItem class constructor with args for data membrs
-        public MenuItem(double itemCost, String itemName)
-        {
+		public MenuItem(double itemCost, String itemName)
+		{
 //Set data members to the values passed in
-            name = itemName;
-            cost = itemCost;
-        }
-    //MenuItem class copy constructor
-        public MenuItem(MenuItem toCopy)
-        {
-        //Intialize data members to the same as the MenuItem object passed in
-            cost = toCopy.cost;
-            name = new string(toCopy.name);
-        }
-    //MenuItem public function to return the cost of this menu item
-        public double  getCost()
-        {
-        //Return the cost of this menu item
-            return cost;
-        }
-    //MenuItem public function to return the name of this menu item
-        public String getName()
-        {
-        //Return the name of this menu item
-            return name;
-        }
-    //MenuItem private data member to store the cost of the menu item
-        private double cost;
-    //MenuItem private data member to store the name of the menu item
-        private String name;
+			name = itemName;
+			cost = itemCost;
+		}
+	//MenuItem class copy constructor
+		public MenuItem(MenuItem toCopy)
+		{
+		//Intialize data members to the same as the MenuItem object passed in
+			cost = toCopy.cost;
+		name = toCopy.name;
+		}
+	//MenuItem public function to return the cost of this menu item
+		public double  getCost()
+		{
+		//Return the cost of this menu item
+			return cost;
+		}
+	//MenuItem public function to return the name of this menu item
+		public String getName()
+		{
+		//Return the name of this menu item
+			return name;
+		}
+	//MenuItem public function to display the contents of the object
+	public int displayMenuItem()
+	{
+		//Display the name and cost of the menu item
+		Console.WriteLine("Item : {0}", name);
+		Console.WriteLine("Cost : {0}", cost);
+		//Return success flag
+		return 1;
+	}
+	//MenuItem private data member to store the cost of the menu item
+		private double cost;
+	//MenuItem private data member to store the name of the menu item
+		private String name;
 
-    }
+	}
 //Class to manage an Order object, storing and manupilating order details
-    class Order
-    {
-    //Order class default constructor
-        public Order()
-        {
-        //Intialize data members to default values
-            items= null;
-        orderCost = 0;
-        orderStatus = 'c';
-        orderCounter = 0;
-        orderId = orderCounter++;
-        orderPickUpTime = (DateTime.Now).AddMinutes (40);
-        foodCartId = 0;
-        }
-    //Order class constructor with arguements for a list of menu items 
-    //and the id of the food cart making this order
-    public Order(LinkedList<MenuItem> newItems, int foodCartMaker)
-        {
-        //Intialize the items to the same items as passed in
-            items = new LinkedList<MenuItem> (newItems);
-        foodCartId = foodCartMaker;
-        //Intialize data members to appropriate values
-        orderCost = 0;
-        orderStatus = 's';
-        orderCounter = 0;
-        orderId = orderCounter++;
-        orderPickUpTime = (DateTime.Now).AddMinutes (40);
-        }
-    //Order class copy constructor
-        public Order(Order toCopy)
-        {
-        //Set data members to the value of the Order object passed in
-            items = new LinkedList<MenuItem> (toCopy.items);
-        orderPickUpTime = toCopy.getOrderPickUpTime;
-        orderCost = toCopy.orderCost;
-        orderStatus = toCopy.orderStatus;
-        orderId = toCopy.orderId;
-        foodCartId = toCopy.foodCartId;
-        }
-    //Order class public function to return the order status of this order object
-        public char getStatus()
-        {
-        //Return the order status
-            return orderStatus;
-        }
-    //Order class public function to set the order status of this order object
-        public char setStatus(char updatedStatus)
-        {
-        //Set the order status to the arguement passed in
-            orderStatus = updatedStatus;
-        //Return the updated order status
-            return this.getStatus ();
-        }
-    //Order class public function to get the pickup time for this oder object
-    public DateTime getOrderPickUpTime()
-        {
-        //Return the pickup time for this order object
-            return orderPickUpTime;
-        }
-    //Order class public function to get the food cart id for this order object
-    public int getfoodCartId()
-    {
-        //Return the food cart id for this order object
-        return foodCartId;
-    }
-    //Order class public function to get the orderId associated with this order object
-    public int getOrderId()
-    {
-        //Return teh order id for this order object
-        return orderId;
-    }
-    //Order class public mention function to display the contents of the order objects
-    public int displayOrder()
-    {
-        Console.WriteLine ();
-        //Display order number
-        Console.WriteLine ("Order ID : {i}" , orderId);
-        //Display the id of the food cart making this order
-        Console.WriteLine ("Order ID : {i}" ,foodCartId);
-        //Display the 
-        //Display all menu items this order contains
-        LinkedListNode<Menuitems> head = new LinkedListNode<MenuItem> (items.First);
+	class Order
+	{
+	//Order class default constructor
+		public Order()
+		{
+		//Intialize data members to default values
+			items= null;
+		orderCost = 0;
+		orderStatus = 'c';
+		orderCounter = 0;
+		orderId = orderCounter++;
+		orderPickUpTime = (DateTime.Now).AddMinutes (40);
+		foodCartId = 0;
+		}
+	//Order class constructor with arguements for a list of menu items 
+	//and the id of the food cart making this order
+	public Order(LinkedList<MenuItem> newItems, int foodCartMaker)
+		{
+		//Intialize the items to the same items as passed in
+			items = new LinkedList<MenuItem> (newItems);
+		foodCartId = foodCartMaker;
+		//Intialize data members to appropriate values
+		orderCost = 0;
+		orderStatus = 's';
+		orderCounter = 0;
+		orderId = orderCounter++;
+		orderPickUpTime = (DateTime.Now).AddMinutes (40);
+		}
+	//Order class copy constructor
+		public Order(Order toCopy)
+		{
+		//Set data members to the value of the Order object passed in
+		    items = new LinkedList<MenuItem> (toCopy.items);
+		orderPickUpTime = toCopy.orderPickUpTime;
+		orderCost = toCopy.orderCost;
+		orderStatus = toCopy.orderStatus;
+		orderId = toCopy.orderId;
+		foodCartId = toCopy.foodCartId;
+		}
+	//Order class public function to return the order status of this order object
+		public char getStatus()
+		{
+		//Return the order status
+			return orderStatus;
+		}
+	//Order class public function to set the order status of this order object
+	//There is no precondition that the status to be updated will be meaningfull
+	public char setStatus(char updatedStatus)
+		{
+		//Check to see if the udpated status is a delay status
+		if (updatedStatus == 'd') 
+		{
+			//If it is delay the order pickup time by 5 minutes
+			orderPickUpTime.AddMinutes (5);
+			//Exit and leave the order's status intact
+			return this.getStatus ();
+		}
+		//Set the order status to the arguement passed in
+			orderStatus = updatedStatus;
+		//Return the updated order status
+			return this.getStatus ();
+	    }
+	//Order class public function to get the pickup time for this oder object
+	public DateTime getOrderPickUpTime()
+		{
+		//Return the pickup time for this order object
+			return orderPickUpTime;
+		}
+	//Order class public function to get the food cart id for this order object
+	public int getfoodCartId()
+	{
+		//Return the food cart id for this order object
+		return foodCartId;
+	}
+	//Order class public function to get the orderId associated with this order object
+	public int getOrderId()
+	{
+		//Return teh order id for this order object
+		return orderId;
+	}
+	//Order class public mention function to display the contents of the order objects
+	public int displayOrder()
+	{
+		Console.WriteLine ();
+		//Display order number
+		Console.WriteLine ("Order ID : {0}" , orderId);
+		//Display the id of the food cart making this order
+		Console.WriteLine ("Order ID : {0}" ,foodCartId);
+		//Display the 
+		//Display all menu items this order contains
+		LinkedListNode<MenuItem> head = items.First;
 
-        Console.WriteLine ();
+		Console.WriteLine ();
+		Console.WriteLine ("Menu Items : ");
+		//Loo
+		while (head != null) 
+		{
+			head.Value.displayMenuItem ();
+			Console.WriteLine ();
+			head = head.Next;
+		}
+		//Display the order pickup time
+		Console.WriteLine ("Order Pick Up Time : {0}", orderPickUpTime);
 
-        while (head != null) 
-        {
-            Console.WriteLine (head.ToString);
-            Console.WriteLine ();
-            head = head.Next;
-        }
+		//Return success flag
+		return 1;
 
-    }
-    //Ordeer class private data member to aid in generating unique order id's
-    private static int orderCounter;    
-    //Order class private datat member containing a linked list of menu items
-    private LinkedList<MenuItem> items;
-    //Order class private data member to track total cost of order
-    private double orderCost;
-    //Order class private data member to track the status of the order
-    //Possible values include
-    //s-submitted
-    //c-cancelled
-    //p-prepping
-    //f-finished
-    //r-recieved
-        private char orderStatus;
-        private int orderId;
-    //Order class private data member for the food cart that is making this order object
-        private int foodCartId;
-    //Order class private data member to hold the pickup time for this order object
-    private DateTime orderPickUpTime;
+	}
+	//Ordeer class private data member to aid in generating unique order id's
+	private static int orderCounter;	
+	//Order class private datat member containing a linked list of menu items
+	private LinkedList<MenuItem> items;
+	//Order class private data member to track total cost of order
+	private double orderCost;
+	//Order class private data member to track the status of the order
+	//Possible values include
+	//s-submitted
+	//c-cancelled
+	//p-prepping
+	//f-finished
+	//r-recieved
+		private char orderStatus;
+		private int orderId;
+	//Order class private data member for the food cart that is making this order object
+		private int foodCartId;
+	//Order class private data member to hold the pickup time for this order object
+	private DateTime orderPickUpTime;
 
-    }
+	}
 //Class to manage a collection of orders
-    class OrderManager
-    {
-    //OrderManager class default constructor
-        public OrderManager()
-        {
-            orderQueue = null;
-        }
-    //OrderManager class constructor with argument for a list of orders
-        public OrderManager(LinkedList<Order> newOrderQueue)
-        {
-            orderQueue = new LinkedList<Order> (newOrderQueue);
-        }
-    //OrderManager class copy constructor
-        public OrderManager(OrderManager toCopy)
-        {
-        orderQueue = new LinkedList<Order> (toCopy.orderQueue);
-        }
-    //OrderManager class public function to add a order to the list of orders in this object
-        public int submitOrder(OrderInfo newOrder)
-        {
-        return 1;
-        }
-    //OrderManager class public function to remove an order from the list of orders in this object
-        //Maybe remove is just the private version of cancel...
-    public int removeOrder(Order order)
-        {
-        return 1;
-        }
-    //OrderManager class public function to view an order using the order id for a key
-    public int viewOrder(Order order)
-        {
-        return 1;
-        }
-    //OrderManager class public function to view a collection of orders by order id
-    public int viewOrders(List<Order> requestedOrders)
-    {
-        return 1;
-    }
-    //OrderManager class public function to cancel a specified order
-    public int cancelOrder(Order order)
-        {
-        return 1;
-        }
-    //OrderManager class public function to cancel a specified order
-    public int startOrder(Order order)
-        {
-        return 1;
-        }
-    //OrderManager class public function to change status to finish for a specified order
-    public int finishOrder(Order order)
-        {
-        return 1;
-        }
-    //OrderManager class public function to delay a specified order
-        //Maybe we will whack this functionality....
-    public int delayOrder(Order order)
-        {
-        return 1;
-        }
-    /*
-    //OrderManager class private function to search for and return a order by orderId key
-        private Order getOrder(int orderId)
-        {
-            //Search through the order queue until desired order found,
-            //return it, else return null pointer
-        }
-    */
-    //OrderManager class data member containing the list of orders being managed
-        private LinkedList<Order> orderQueue;
-    }
-
+	class OrderManager
+	{
+	//OrderManager class default constructor
+		public OrderManager()
+		{
+			orderQueue = null;
+		}
+	//OrderManager class constructor with argument for a list of orders
+		public OrderManager(LinkedList<Order> newOrderQueue)
+		{
+			orderQueue = new LinkedList<Order> (newOrderQueue);
+		}
+	//OrderManager class copy constructor
+		public OrderManager(OrderManager toCopy)
+		{
+		orderQueue = new LinkedList<Order> (toCopy.orderQueue);
+		}
+	//OrderManager class public function to add a order to the list of orders in this object
+		public int submitOrder(Order newOrder)
+		{
+		//Add the new order to our queue of current orders
+		orderQueue.AddLast (newOrder);
+		//Return success flag
+		return 1;
+		}
+	//OrderManager class public function to remove an order from the list of orders in this object
+	//For example after an order has been picked up	
+	public int removeOrder(Order order)
+		{
+		//Linked list node to help us in searching through the order queue
+		LinkedListNode<Order> head = orderQueue.Find (order);  
+		//If we found the order to be removed in the queue
+		if (head != null) 
+		{
+			//Remove the order
+			orderQueue.Remove (order);
+			//Return successful flag
+			return 1;
+		} 
+		//Else we did not find the order
+		else 
+		{
+			//So return fail flag
+			return 0;
+		}
+		}
+	//OrderManager class public function to view an order using the order id for a key
+	public int viewOrder(Order order)
+		{
+		//Call the order objects display function
+		order.displayOrder ();
+		//Return success flag
+		return 1;
+		}
+	//OrderManager class public function to view a collection of orders by order id
+	public int viewOrders(LinkedList<Order> requestedOrders)
+	{
+		//Node to help us in navigating the list of orders
+		LinkedListNode<Order> head = requestedOrders.First;
+		//Travese the linked list and display each order
+		while (head != null) {
+			//Display the order in the current node
+			head.Value.displayOrder();
+			//Advance our node to the next object in the linked list
+			head = head.Next;
+		}
+		//Return success flag
+		return 1;
+	}
+	//OrderManager class public function to cancel a specified order
+	public int cancelOrder(Order order)
+		{
+		if(order.getStatus()=='s')
+			{
+			//Linked list node to help us in searching through the order queue
+			LinkedListNode<Order> head = orderQueue.Find (order);  
+			//If we found the order to be cancelled in the queue
+			if (head != null) 
+			{
+				//Cancel the order
+				head.Value.setStatus ('d');
+				//Remove the order from the order queue
+				orderQueue.Remove (order);
+				//Return successful flag
+				return 1;
+			} 
+			//Else we did not find the order
+			else 
+			{
+				//So return fail flag
+				return 0;
+			}
+			}
+			else
+			{
+			Console.WriteLine ("Order not able to be cancelled");
+			//Return fail flag
+			return 0;
+			}
+		
+		}
+	//OrderManager class public function to cancel a specified order
+	public int startOrder(Order order)
+		{
+		//Linked list node to help us in searching through the order queue
+		LinkedListNode<Order> head = orderQueue.Find (order);  
+		//If we found the order to be started in the queue
+		if (head != null) 
+		{
+			//Mark the order as started
+					head.Value.setStatus ('p');
+			//Return successful flag
+			return 1;
+		} 
+		//Else we did not find the order
+		else 
+		{
+			//So return fail flag
+			return 0;
+		}
+		}
+	//OrderManager class public function to change status to finish for a specified order
+	public int finishOrder(Order order)
+		{
+		//Linked list node to help us in searching through the order queue
+		LinkedListNode<Order> head = orderQueue.Find (order);  
+		//If we found the order to be finished in the queue
+		if (head != null) 
+		{
+			//Mark the order as finished
+			head.Value.setStatus ('f');
+			//Return successful flag
+			return 1;
+		} 
+		//Else we did not find the order
+		else 
+		{
+			//So return fail flag
+			return 0;
+		}
+		}
+	//OrderManager class public function to delay a specified order
+		//Maybe we will whack this functionality....
+	public int delayOrder(Order order)
+		{
+		//Linked list node to help us in searching through the order queue
+		LinkedListNode<Order> head = orderQueue.Find (order);  
+		//If we found the order to be delayed in the queue
+		if (head != null) 
+		{
+			//Delay the order
+			head.Value.setStatus ('d');
+			//Return successful flag
+			return 1;
+		} 
+		//Else we did not find the order
+		else 
+		{
+			//So return fail flag
+			return 0;
+		}
+		}
+	//OrderManager class data member containing the list of orders being managed
+		private LinkedList<Order> orderQueue;
+	}
 
