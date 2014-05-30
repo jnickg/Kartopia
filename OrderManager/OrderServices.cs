@@ -8,7 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 
 //Class for testing and debugging order services classes.
-class TestClass
+public class TestClass
 	{
 	//Main method of the TestClass class
 		public static void Main (string[] args)
@@ -18,7 +18,7 @@ class TestClass
 	}
 	}
 //Class for managing a menu item object
-	class MenuItem
+public	class MenuItem
 	{
 //MenuItem class default constructor
 		public MenuItem()
@@ -62,6 +62,29 @@ class TestClass
 		//Return success flag
 		return 1;
 	}
+	//MenuItem class public function for setting the data members of a MenuItem
+	//directly from the user
+	public int readMenuItemInfo()
+	{
+		//Prompt the user for MenuItem info, read it, and set the data members accordingly
+		Console.WriteLine ("\nEnter the name of Menu Item : ");
+		name = Console.ReadLine ();
+
+		Console.WriteLine ("\nEnter the cost of the menu item in $$.cents format : ");
+		cost = Convert.ToDouble(Console.ReadLine ());
+		//Return success flag
+		return 1;
+	}
+	//MenuItem class public function for setting the data members of a MenuItem object
+	//via paramaters
+	public int readMenuItemInfo(double itemCost, String itemName)
+	{
+		//Set data members to the values passed in
+		cost = itemCost;
+		name = itemName;
+		//Return success flag
+		return 1;
+	}
 	//MenuItem private data member to store the cost of the menu item
 		private double cost;
 	//MenuItem private data member to store the name of the menu item
@@ -69,7 +92,7 @@ class TestClass
 
 	}
 //Class to manage an Order object, storing and manupilating order details
-	class Order
+public	class Order
 	{
 	//Order class default constructor
 		public Order()
@@ -88,7 +111,7 @@ class TestClass
 	public Order(LinkedList<MenuItem> newItems, int foodCartMaker)
 		{
 		//Intialize the items to the same items as passed in
-			items = new LinkedList<MenuItem> (newItems);
+		items = new LinkedList<MenuItem> (newItems);
 		foodCartId = foodCartMaker;
 		//Intialize data members to appropriate values
 		orderCost = 0;
@@ -96,6 +119,13 @@ class TestClass
 		orderCounter = 0;
 		orderId = orderCounter++;
 		orderPickUpTime = (DateTime.Now).AddMinutes (40);
+		//Node to help us in traversing the list of menu items
+		LinkedListNode<MenuItem> head = newItems.First;
+		//Loop to add the cost of each menu item to the cost of the order
+		while (head != null) {
+			orderCost += head.Value.getCost ();
+			head = head.Next;
+		}
 		}
 	//Order class copy constructor
 		public Order(Order toCopy)
@@ -177,6 +207,15 @@ class TestClass
 		return 1;
 
 	}
+	//Order class public function to create an order by taking
+	//input from a user
+	public int readOrderInfo()
+	{
+		//Return success flag
+		return 1;
+	}
+	//Order class public function to create an order through
+	//parameters passed into the function
 	//Ordeer class private data member to aid in generating unique order id's
 	private static int orderCounter;	
 	//Order class private datat member containing a linked list of menu items
@@ -199,7 +238,7 @@ class TestClass
 
 	}
 //Class to manage a collection of orders
-	class OrderManager
+public	class OrderManager
 	{
 	//OrderManager class default constructor
 		public OrderManager()
