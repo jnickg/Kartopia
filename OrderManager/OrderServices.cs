@@ -193,7 +193,7 @@ public	class Order
 
 		Console.WriteLine ();
 		Console.WriteLine ("Menu Items : ");
-		//Loo
+		//Loop to display all menu items contained in this order object
 		while (head != null) 
 		{
 			head.Value.displayMenuItem ();
@@ -211,11 +211,88 @@ public	class Order
 	//input from a user
 	public int readOrderInfo()
 	{
+		//Integer to count loop iterations
+		int count = 0;
+		//character for storing users response
+		char response='Q';
+		//MenuItem object for storing a menu item
+		MenuItem tempItem = new MenuItem ();
+		//Do while loop to allow the user to add all the menu items they want
+		do {
+			//Prompt user for their choice
+			Console.WriteLine("\nEnter 'A' to add an item to this order");
+			Console.WriteLine("\nEnter 'I' to add the food cart Id for this order");
+			Console.WriteLine("\nEnter 'Q' to exit and submit finished order");
+			//Read user choice
+			response=Char.ToUpper(Convert.ToChar(Console.ReadLine()));
+
+			//If user wanted to add menu item
+			if(response=='A')
+			{
+				//If this is the first item to be added
+				if(count==0)
+				{
+					//Intialize the order's list of menu items
+					items=new LinkedList<MenuItem>(); 
+				}
+				//Read and store the new menu item for this order by calling 
+				//the appropriate version of readMenuItemInfo function
+				tempItem.readMenuItemInfo();
+				//Add this menu to the end of the list of menu items for this order
+				items.AddLast(new LinkedListNode<MenuItem>(tempItem));
+				//Add the cost of this menu item to order cost
+				orderCost+=tempItem.getCost();
+				}
+			else if(response=='I')
+			{
+				//Prompt the user for the food cart id
+				Console.WriteLine("\nEnter the ID number of the food cart for this order : ");
+				//Read and store user's response
+				foodCartId=Convert.ToInt32(Console.ReadLine());
+			}
+			//Else user wants to quit
+			else{
+				//Display exit message
+				Console.WriteLine("\nSubmitting Order");
+			}
+			//update the loop counter
+			++count;
+		} while(response == 'A');
+
+		//Set order data members to appropriate values
+		if (items != null) {
+			orderStatus = 's';
+			orderPickUpTime = (DateTime.Now).AddMinutes (40);
+		} else {
+			orderStatus = 'c';
+			orderPickUpTime = DateTime.Now;
+			//Return fail flag as no items have been added to this order
+			return 0;
+		}
 		//Return success flag
 		return 1;
 	}
 	//Order class public function to create an order through
 	//parameters passed into the function
+	public int readOrderInfo(LinkedList<MenuItem> newItems, int foodCartMaker)
+	{
+		//Intialize the items to the same items as passed in
+		items = new LinkedList<MenuItem> (newItems);
+		foodCartId = foodCartMaker;
+		//Intialize data members to appropriate values
+		orderCost = 0;
+		orderStatus = 's';
+		orderPickUpTime = (DateTime.Now).AddMinutes (40);
+		//Node to help us in traversing the list of menu items
+		LinkedListNode<MenuItem> head = newItems.First;
+		//Loop to add the cost of each menu item to the cost of the order
+		while (head != null) {
+			orderCost += head.Value.getCost ();
+			head = head.Next;
+		}
+		//Return success flag
+		return 1;
+	}
 	//Ordeer class private data member to aid in generating unique order id's
 	private static int orderCounter;	
 	//Order class private datat member containing a linked list of menu items
