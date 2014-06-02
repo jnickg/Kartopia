@@ -14,7 +14,14 @@ public class TestClass
 		public static void Main (string[] args)
 	{
 		//Output to the console text
-		Console.WriteLine ("Order at Kartopia!");
+		Console.WriteLine ("Order at Kartopia!\n");
+
+		MenuItem testMenuItem = new MenuItem (15.34, "hamburger");
+
+		testMenuItem.displayMenuItem();
+
+		Console.WriteLine ("Item cost : {0}", testMenuItem.getCost());
+		Console.WriteLine(
 	}
 	}
 //Class for managing a menu item object
@@ -186,7 +193,7 @@ public	class Order
 		//Display order number
 		Console.WriteLine ("Order ID : {0}" , orderId);
 		//Display the id of the food cart making this order
-		Console.WriteLine ("Order ID : {0}" ,foodCartId);
+		Console.WriteLine ("Food Cart ID : {0}" ,foodCartId);
 		//Display the 
 		//Display all menu items this order contains
 		LinkedListNode<MenuItem> head = items.First;
@@ -201,7 +208,7 @@ public	class Order
 			head = head.Next;
 		}
 		//Display the order pickup time
-		Console.WriteLine ("Order Pick Up Time : {0}", orderPickUpTime);
+					Console.WriteLine ("Order Pick Up Time : {0}", orderPickUpTime.ToString());
 
 		//Return success flag
 		return 1;
@@ -346,15 +353,23 @@ public	class OrderManager
 		{
 		//Linked list node to help us in searching through the order queue
 		LinkedListNode<Order> head = orderQueue.Find (order);  
-		//If we found the order to be removed in the queue
+					//If the list is not empty
 		if (head != null) 
 		{
-			//Remove the order
-			orderQueue.Remove (order);
-			//Return successful flag
-			return 1;
+
+						//Try to remove the order
+			bool isRemoved=orderQueue.Remove (order);
+			//Return successful flag if we found and removed the order
+			if (isRemoved == true) {
+				return 1;
+			}
+			//Else we didnt find the order to be removed
+			else {
+				return 0;
+			}
 		} 
-		//Else we did not find the order
+					//Else there was no orders in our queue to begin with,
+					//and this function trivially fails
 		else 
 		{
 			//So return fail flag
@@ -395,7 +410,7 @@ public	class OrderManager
 			if (head != null) 
 			{
 				//Cancel the order
-				head.Value.setStatus ('d');
+				head.Value.setStatus ('c');
 				//Remove the order from the order queue
 				orderQueue.Remove (order);
 				//Return successful flag
@@ -408,6 +423,7 @@ public	class OrderManager
 				return 0;
 			}
 			}
+					//Else the order is not in a state where it can be cancelled
 			else
 			{
 			Console.WriteLine ("Order not able to be cancelled");
