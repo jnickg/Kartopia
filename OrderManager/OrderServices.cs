@@ -21,7 +21,7 @@ public class TestClass
 		testMenuItem.displayMenuItem();
 
 		Console.WriteLine ("Item cost : {0}", testMenuItem.getCost());
-		Console.WriteLine(
+		Console.WriteLine();
 	}
 	}
 //Class for managing a menu item object
