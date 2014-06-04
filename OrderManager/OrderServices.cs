@@ -15,9 +15,7 @@ public class TestClass
 	{
 		////Output to the console text
 		Console.WriteLine ("Order at Kartopia!\n");
-
-		MenuItem testMenuItem = new MenuItem (15.34, "hamburger");
-			}
+}
 }
 ////Class for managing a menu item object
 public	class MenuItem
@@ -325,7 +323,7 @@ public	class OrderManager
 		if (head != null)
 		{
 			///Mark the order as started
-					head.Value.setStatus ('p');
+			head.Value.OrderStatus='p';
 			///Return successful flag
 			return 1;
 		}
@@ -345,7 +343,7 @@ public	class OrderManager
 		if (head != null)
 		{
 			///Mark the order as finished
-			head.Value.setStatus ('f');
+			head.Value.OrderStatus='f';
 			///Return successful flag
 			return 1;
 		}
@@ -362,7 +360,7 @@ public	class OrderManager
 
 		bool found = false;
 		while (head != null && found==false) {
-			if (head.Value.getOrderId() == orderId) {
+			if (head.Value.OrderId== orderId) {
 				found = true;
 				return head.Value;
 			}
@@ -372,24 +370,29 @@ public	class OrderManager
 		Order order=new Order();
 		return order;
 	}
-
+	//OrderManager class public function to return a list of all orders
+	//made by a particular food cart
 	public LinkedList<Order> getOrders(int foodCartMaker)
 	{
+		//A linked list to hold all the orders from the particular food cart
 		LinkedList<Order> foodCartOrders = new LinkedList<Order> ();
-
+		//A linked list node to help us in traversing the order queeu
 		LinkedListNode<Order> head = orderQueue.First;
-
+		//If nothing in the orderqueue, return an empty list of orders
 		if (head == null) {
 			return foodCartOrders;
 		}
-
+		//Loop to check each order in the queue
 		while (head != null) {
-			if (head.Value.getfoodCartId () == foodCartMaker) {
+			//If the current order is made by the food cart maker of interest 
+			if (head.Value.FoodCartId== foodCartMaker) {
+				//Add this order to our list to be returned
 				foodCartOrders.AddFirst (new Order (head.Value));
 			}
+			//Advance to the next order in the queue
 			head = head.Next;
 		}
-
+		//Return the list of orders made by the food cart maker in question
 		return foodCartOrders;
 	}
 
@@ -403,7 +406,7 @@ public	class OrderManager
 		if (head != null)
 		{
 			///Delay the order
-			head.Value.OrderStatus.set('d');
+			head.Value.OrderStatus='d';
 			///Return successful flag
 			return 1;
 		}
