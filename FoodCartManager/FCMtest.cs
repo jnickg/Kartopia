@@ -11,6 +11,7 @@ namespace K_FoodCartManager
     {
         public static void Main(String[] args)
         {
+           
             List<String> found;
             MenusAndKartInfo testing = new MenusAndKartInfo();
             found = testing.getMatch("hamburger");
@@ -28,14 +29,6 @@ namespace K_FoodCartManager
             {
                 Debug.Assert(testing.verifyItem(item), "Should have verified item");
             }
-
-      
-            
-           
-
-            
-            
-
         }
     }
 }
