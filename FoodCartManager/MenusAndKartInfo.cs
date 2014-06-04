@@ -22,7 +22,7 @@ namespace K_FoodCartManager                     // not really sure if this is su
         /// <summary>
         /// this path to the menu and food cart data needs to be filled in.
         /// </summary>
-        private readonly string kartpath = "path_to_file";
+        private readonly string kartpath = "menu.txt";
         private readonly int cartData = 0;
 
 
