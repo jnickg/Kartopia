@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K_OrderManager", "OrderMana
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K_FoodCartManager", "FoodCartManager\K_FoodCartManager.csproj", "{00A0DEFF-FBF8-4905-974C-79D01B962B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KARTOPIA_Customer", "KARTOPIA_Customer\KARTOPIA_Customer.csproj", "{C45FA921-B397-48B9-8F34-ADCDF9BCF6AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{00A0DEFF-FBF8-4905-974C-79D01B962B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A0DEFF-FBF8-4905-974C-79D01B962B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A0DEFF-FBF8-4905-974C-79D01B962B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C45FA921-B397-48B9-8F34-ADCDF9BCF6AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C45FA921-B397-48B9-8F34-ADCDF9BCF6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C45FA921-B397-48B9-8F34-ADCDF9BCF6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C45FA921-B397-48B9-8F34-ADCDF9BCF6AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

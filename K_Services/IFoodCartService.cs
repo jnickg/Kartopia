@@ -37,6 +37,13 @@ namespace K_Services
         TimeSpan _openTime;
         TimeSpan _closeTime;
 
+        public FoodCartInfo()
+        {
+            this._cartID = Guid.NewGuid();
+            this._openTime = TimeSpan.FromHours(9);
+            this._closeTime = TimeSpan.FromHours(5);
+        }
+
         /// <summary>
         /// The time the Food Cart represented by this FoodCartInfo opens
         /// </summary>
@@ -82,8 +89,20 @@ namespace K_Services
     {
         Guid _itemID;
         string _name = "MenuItemName";
-        int cost;
+        int _cost;
 
+        public MenuItemInfo()
+        {
+            this._itemID = Guid.NewGuid();
+            this._cost = 0;
+        }
+
+        public MenuItemInfo(MenuItemInfo toCopy)
+        {
+            this.itemID = toCopy.itemID;
+            this.name = toCopy.name;
+            this.cost = toCopy.cost;
+        }
         /// <summary>
         /// The "database" GUID representing this Menu Item
         /// </summary>
@@ -106,10 +125,10 @@ namespace K_Services
         /// The cost in cents of this Menu Item
         /// </summary>
         [DataMember]
-        public int Cost
+        public int cost
         {
-            get { return cost; }
-            set { cost = value; }
+            get { return _cost; }
+            set { _cost = value; }
         }
     }
 }

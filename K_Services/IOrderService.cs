@@ -58,12 +58,32 @@ namespace K_Services
     public class Order
     {
         Guid _orderID;
-        TimeSpan _created;
+        DateTime _created;
         TimeSpan _pickup;
         TimeSpan _dropoff;
-        Dictionary<MenuItemInfo, bool> _itemAndIsStarted;
+        Dictionary<MenuItemInfo, PrepStatus> _itemAndIsStarted;
         bool _paid;
 
+        public Order(OrderDetails details)
+        {
+            this._orderID = Guid.NewGuid();
+            this._paid = false;
+            this._created = DateTime.Now;
+            this._pickup = TimeSpan.FromMinutes(15);
+            this._dropoff = TimeSpan.FromMinutes(30);
+            // Create new instance for each instance of an ordered item
+            this._itemAndIsStarted = new Dictionary<MenuItemInfo, PrepStatus>();
+            foreach (MenuItemInfo item in details.itemAndQuantity.Keys)
+            {
+                for (int i = 0; i < details.itemAndQuantity[item]; ++i)
+                {
+                    this.itemAndIsStarted.Add(
+                        new MenuItemInfo(item),
+                        PrepStatus.OK_CANCEL
+                    );
+                }
+            }
+        }
         /// <summary>
         /// The order's unique GUID
         /// </summary>
@@ -77,7 +97,7 @@ namespace K_Services
         /// The exact time the order was created.
         /// </summary>
         [DataMember]
-        public TimeSpan created
+        public DateTime created
         {
             get { return _created; }
             set { _created = value; }
@@ -86,19 +106,29 @@ namespace K_Services
         /// The exact time the order is to be / was picked up.
         /// </summary>
         [DataMember]
-        public TimeSpan pickup
+        public DateTime pickup
         {
-            get { return _pickup; }
-            set { _pickup = value; }
+            get {
+                return _created + _pickup;
+            }
+            set {
+                _pickup = value - _created; 
+            }
         }
         /// <summary>
         /// The exact time the order is to be / was dropped off.
         /// </summary>
         [DataMember]
-        public TimeSpan dropoff
+        public DateTime dropoff
         {
-            get { return _dropoff; }
-            set { _dropoff = value; }
+            get
+            {
+                return _created + _dropoff;
+            }
+            set
+            {
+                _dropoff = value - _created;
+            }
         }
         /// <summary>
         /// A set of MenuItemInfo objects, each one representing one instance of the Menu
@@ -106,7 +136,7 @@ namespace K_Services
         /// dish has been started.
         /// </summary>
         [DataMember]
-        public Dictionary<MenuItemInfo, bool> itemAndIsStarted
+        public Dictionary<MenuItemInfo, PrepStatus> itemAndIsStarted
         {
             get { return _itemAndIsStarted; }
             set { _itemAndIsStarted = value; }
@@ -119,6 +149,15 @@ namespace K_Services
         {
             get { return _paid; }
             set { _paid = value; }
+        }
+        /// <summary>
+        /// An enumeration of all functionally-significant prep statuses for any MenuItemInfo
+        /// in an Order.
+        /// </summary>
+        private enum PrepStatus
+        {
+            OK_CANCEL,
+            NO_CANCEL
         }
     }
 }

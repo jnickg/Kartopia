@@ -9,25 +9,27 @@ namespace K_Services
 {
     public class FoodCartService : IFoodCartService
     {
-        List<MenuItemInfo> getFoodCartMenu(FoodCartInfo thisCart)
+        List<FoodCartInfo> _foodCarts = new List<FoodCartInfo>();
+
+        public List<MenuItemInfo> getFoodCartMenu(FoodCartInfo thisCart)
         {
             // Call something in K_FoodCartManager
             return null;
         }
 
-        List<FoodCartInfo> getFoodCarts()
+        public List<FoodCartInfo> getFoodCarts()
         {
             // Call something in K_FoodCartManager
             return null;
         }
 
-        List<MenuItemInfo> getMenuItemMatches(string searchParam)
+        public List<MenuItemInfo> getMenuItemMatches(string searchParam)
         {
             // Call something in K_FoodCartManager
             return null;
         }
 
-        List<FoodCartInfo> getFoodCartMatches(string searchParam)
+        public List<FoodCartInfo> getFoodCartMatches(string searchParam)
         {
             // Call something in K_FoodCartManager
             return null;

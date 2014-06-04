@@ -8,21 +8,36 @@ namespace K_Services
 {
     public class OrderService : IOrderService
     {
-        public Guid submitOrder(OrderDetails newOrder)
+        Dictionary<Guid, List<Order>> _currentOrders = new Dictionary<Guid, List<Order>>();
+
+        public Guid submitOrder(OrderDetails details, Guid cartID)
         {
-            // Call something in K_OrderManager
-            return new Guid();
+            Order instantiatedOrder = new Order(details);
+            _currentOrders[cartID].Add(instantiatedOrder);
+            return instantiatedOrder.orderID;
         }
 
         public Order getOrder(Guid orderID)
         {
-            // Call something in K_OrderManager
+            foreach (Guid g in _currentOrders.Keys)
+            {
+                foreach (Order o in _currentOrders[g])
+                {
+                    if (o.orderID == orderID)
+                    {
+                        return o;
+                    }
+                }
+            }
             return null;
         }
 
         public List<Order> getOrders(Guid clientGUID)
         {
-            // Call something in K_OrderManager
+            if (_currentOrders.ContainsKey(clientGUID))
+            {
+                return _currentOrders[clientGUID];
+            }
             return null;
         }
 
