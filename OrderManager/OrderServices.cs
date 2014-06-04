@@ -399,6 +399,25 @@ public	class OrderManager
 		///Return success flag
 		return 1;
 	}
+	//OrderManager class public function to view all the orders for a specific food cart
+	public int viewOrders(int foodCartMaker)
+	{
+		//Nde variable to help us in traversing the order queue
+		LinkedListNode<Order> head = orderQueue.First;
+		//Loop to go through all orders in the order queue
+		while (head != null) 
+		{
+			//If the particular order is made by the food cart we are interested in
+			if (head.Value.getfoodCartId == foodCartMaker) {
+				//Display it
+				head.Value.displayOrder ();
+			}
+			//Advance to the next node
+			head = head.Next;
+		}
+		//Return success flag
+		return 1;
+	}
 	///OrderManager class public function to cancel a specified order
 	public int cancelOrder(Order order)
 		{
