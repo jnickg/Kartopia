@@ -354,20 +354,29 @@ public	class OrderManager
 			return 0;
 		}
 		}
+	//OrderManager class public function to return a specfic order by order id
 	public Order getOrder(int orderId)
 	{
+		//Node to help us in traversing the order queue
 		LinkedListNode<Order> head = orderQueue.First;
-
+		//Boolean variable to keep track of if we found the order in question
 		bool found = false;
+		//Loop to go through the order queue and search for the order
 		while (head != null && found==false) {
+			//If the current order is the one we are searching for
 			if (head.Value.OrderId== orderId) {
+				//Set found to true
 				found = true;
+				//Return the match
 				return head.Value;
 			}
+			//Advance to the next item in the order queue
 			head = head.Next;
 			}
-
+		//Assuming we didn't find the order we want, create
+		//a blank order
 		Order order=new Order();
+		//And return the blank order
 		return order;
 	}
 	//OrderManager class public function to return a list of all orders
