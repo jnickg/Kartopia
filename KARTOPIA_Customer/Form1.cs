@@ -42,6 +42,9 @@ namespace KARTOPIA_Customer
             }
             foodcarts = FoodCartManager.getFoodCarts();
             comboBox_kart.DataSource = foodcarts;
+            comboBox_kart.DisplayMember = "name";
+            comboBox_kart.ValueMember = "cartID";
+            
         }
 
         private static OrderDetails randomOrder(FoodCartInfo kart)
@@ -51,7 +54,14 @@ namespace KARTOPIA_Customer
             {
                 int foodIndex = rnd.Next(kart.menuItems.Count);
                 int quantity = randomQty();
-                orderItems.Add(kart.menuItems[foodIndex], quantity);
+                if (orderItems.ContainsKey(kart.menuItems[foodIndex]))
+                {
+                    orderItems[kart.menuItems[foodIndex]]++;
+                }
+                else
+                {
+                    orderItems.Add(kart.menuItems[foodIndex], quantity);
+                }
             }
             return new OrderDetails(orderItems);
         }
