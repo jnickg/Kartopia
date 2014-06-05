@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox_kart = new System.Windows.Forms.ComboBox();
             this.comboBox_food = new System.Windows.Forms.ComboBox();
             this.button_add_select = new System.Windows.Forms.Button();
             this.listBox_srch_rslt = new System.Windows.Forms.ListBox();
@@ -46,6 +45,7 @@
             this.listBox_order = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBox_karts = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,15 +58,6 @@
             this.splitContainer2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // comboBox_kart
-            // 
-            this.comboBox_kart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_kart.FormattingEnabled = true;
-            this.comboBox_kart.Location = new System.Drawing.Point(6, 47);
-            this.comboBox_kart.Name = "comboBox_kart";
-            this.comboBox_kart.Size = new System.Drawing.Size(135, 21);
-            this.comboBox_kart.TabIndex = 0;
             // 
             // comboBox_food
             // 
@@ -128,8 +119,8 @@
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox_kart);
             this.groupBox1.Controls.Add(this.button_add_select);
+            this.groupBox1.Controls.Add(this.comboBox_karts);
             this.groupBox1.Controls.Add(this.comboBox_food);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -257,6 +248,15 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Food";
             // 
+            // comboBox_karts
+            // 
+            this.comboBox_karts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_karts.FormattingEnabled = true;
+            this.comboBox_karts.Location = new System.Drawing.Point(6, 47);
+            this.comboBox_karts.Name = "comboBox_karts";
+            this.comboBox_karts.Size = new System.Drawing.Size(135, 21);
+            this.comboBox_karts.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,7 +287,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox_kart;
         private System.Windows.Forms.ComboBox comboBox_food;
         private System.Windows.Forms.Button button_add_select;
         private System.Windows.Forms.ListBox listBox_srch_rslt;
@@ -305,6 +304,7 @@
         private System.Windows.Forms.ListBox listBox_order;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox_karts;
     }
 }
 

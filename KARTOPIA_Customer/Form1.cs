@@ -40,10 +40,13 @@ namespace KARTOPIA_Customer
                     OrderManager.submitOrder(randomOrder(cart), cart.cartID);
                 }
             }
+
             foodcarts = FoodCartManager.getFoodCarts();
-            comboBox_kart.DataSource = foodcarts;
-            comboBox_kart.DisplayMember = "name";
-            comboBox_kart.ValueMember = "cartID";
+
+            foreach (FoodCartInfo fci in foodcarts)
+            {
+                comboBox_karts.Items.Add(fci);
+            }
             
         }
 
