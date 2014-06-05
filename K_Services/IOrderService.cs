@@ -11,7 +11,7 @@ namespace K_Services
     public interface IOrderService
     {
         [OperationContract]
-        Guid submitOrder(OrderDetails newOrder);
+        Guid submitOrder(OrderDetails newOrder, Guid cartID);
 
         [OperationContract]
         Order getOrder(Guid orderID);
@@ -37,6 +37,11 @@ namespace K_Services
     public class OrderDetails
     {
         Dictionary<MenuItemInfo, int> _itemAndQuantity;
+
+        public OrderDetails(Dictionary<MenuItemInfo, int> itemAndQuantity)
+        {
+            this._itemAndQuantity = itemAndQuantity;
+        }
 
         /// <summary>
         /// A set of MenuItemInfo objects, representing the unique food items to 
@@ -154,7 +159,7 @@ namespace K_Services
         /// An enumeration of all functionally-significant prep statuses for any MenuItemInfo
         /// in an Order.
         /// </summary>
-        private enum PrepStatus
+        public enum PrepStatus
         {
             OK_CANCEL,
             NO_CANCEL

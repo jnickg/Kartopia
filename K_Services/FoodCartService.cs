@@ -11,6 +11,16 @@ namespace K_Services
     {
         List<FoodCartInfo> _foodCarts = new List<FoodCartInfo>();
 
+        public FoodCartService()
+        {
+
+        }
+
+        public FoodCartService(List<FoodCartInfo> carts)
+        {
+            this._foodCarts = carts;
+        }
+
         public List<MenuItemInfo> getFoodCartMenu(FoodCartInfo thisCart)
         {
             // Call something in K_FoodCartManager

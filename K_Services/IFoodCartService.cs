@@ -33,15 +33,31 @@ namespace K_Services
     public class FoodCartInfo
     {
         Guid _cartID;
+        List<MenuItemInfo> _menuItems;
         string _name = "FoodCartName";
         TimeSpan _openTime;
         TimeSpan _closeTime;
 
         public FoodCartInfo()
         {
+            this._menuItems = new List<MenuItemInfo>();
             this._cartID = Guid.NewGuid();
             this._openTime = TimeSpan.FromHours(9);
             this._closeTime = TimeSpan.FromHours(5);
+        }
+
+        public FoodCartInfo(string name, List<MenuItemInfo> menuItems)
+        {
+            this._name = name;
+            this._menuItems = menuItems;
+            this._cartID = Guid.NewGuid();
+            this._openTime = TimeSpan.FromHours(9);
+            this._closeTime = TimeSpan.FromHours(5);
+        }
+
+        public override string ToString()
+        {
+            return _name;
         }
 
         /// <summary>
@@ -80,6 +96,15 @@ namespace K_Services
             get { return _name; }
             set { _name = value; }
         }
+        /// <summary>
+        /// The Food in this Cart
+        /// </summary>
+        [DataMember]
+        public List<MenuItemInfo> menuItems
+        {
+            get { return _menuItems; }
+            set { _menuItems = value; }
+        }
     }
     /// <summary>
     /// A class-based structure representing one menu item entry in a food cart menu item database.
@@ -102,6 +127,18 @@ namespace K_Services
             this.itemID = toCopy.itemID;
             this.name = toCopy.name;
             this.cost = toCopy.cost;
+        }
+
+        public MenuItemInfo(string name, int cost)
+        {
+            this._itemID = Guid.NewGuid();
+            this._name = name;
+            this._cost = cost;
+        }
+
+        public override string ToString()
+        {
+            return _name;
         }
         /// <summary>
         /// The "database" GUID representing this Menu Item

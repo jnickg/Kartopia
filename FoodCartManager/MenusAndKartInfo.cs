@@ -16,7 +16,10 @@ using System.Threading.Tasks;
 
 namespace K_FoodCartManager                     // not really sure if this is supposed to match the main project or sub project
 {
+    public class FoodKart
+    {
 
+    }
     public class MenusAndKartInfo                      // yes, I know you spell Food Cart with a C and not a K. But we have a theme going here....
     {
         /// <summary>

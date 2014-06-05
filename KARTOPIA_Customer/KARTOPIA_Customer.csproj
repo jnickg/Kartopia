@@ -77,6 +77,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FoodCartManager\K_FoodCartManager.csproj">
+      <Project>{00a0deff-fbf8-4905-974c-79d01b962b12}</Project>
+      <Name>K_FoodCartManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\K_Services\K_Services.csproj">
+      <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
+      <Name>K_Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderManager\K_OrderManager.csproj">
+      <Project>{f6d034cd-6a12-41d2-a861-4873ca9ca9be}</Project>
+      <Name>K_OrderManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
