@@ -29,14 +29,23 @@ namespace K_Services
 
         public List<FoodCartInfo> getFoodCarts()
         {
-            // Call something in K_FoodCartManager
-            return null;
+            return _foodCarts;
         }
 
         public List<MenuItemInfo> getMenuItemMatches(string searchParam)
         {
-            // Call something in K_FoodCartManager
-            return null;
+            List<MenuItemInfo> rtn = new List<MenuItemInfo>();
+            foreach (FoodCartInfo fci in _foodCarts)
+            {
+                foreach (MenuItemInfo mii in fci.menuItems)
+                {
+                    if (mii.name.Contains(searchParam))
+                    {
+                        rtn.Add(mii);
+                    }
+                }
+            }
+            return rtn;
         }
 
         public List<FoodCartInfo> getFoodCartMatches(string searchParam)

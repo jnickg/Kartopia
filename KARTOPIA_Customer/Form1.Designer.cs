@@ -34,6 +34,9 @@
             this.buttonadd_srch = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_karts = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_srch = new System.Windows.Forms.TextBox();
@@ -43,9 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button_rmv = new System.Windows.Forms.Button();
             this.listBox_order = new System.Windows.Forms.ListBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboBox_karts = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -130,6 +130,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Item";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 82);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Food";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Karts";
+            // 
+            // comboBox_karts
+            // 
+            this.comboBox_karts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_karts.FormattingEnabled = true;
+            this.comboBox_karts.Location = new System.Drawing.Point(6, 47);
+            this.comboBox_karts.Name = "comboBox_karts";
+            this.comboBox_karts.Size = new System.Drawing.Size(135, 21);
+            this.comboBox_karts.TabIndex = 1;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label2);
@@ -159,6 +186,7 @@
             this.textBox_srch.Name = "textBox_srch";
             this.textBox_srch.Size = new System.Drawing.Size(134, 20);
             this.textBox_srch.TabIndex = 4;
+            this.textBox_srch.TextChanged += new System.EventHandler(this.textBox_srch_TextChanged);
             // 
             // splitContainer2
             // 
@@ -203,6 +231,7 @@
             this.button_placeOrder.TabIndex = 3;
             this.button_placeOrder.Text = "Place Order";
             this.button_placeOrder.UseVisualStyleBackColor = true;
+            this.button_placeOrder.Click += new System.EventHandler(this.button_placeOrder_Click);
             // 
             // label1
             // 
@@ -229,33 +258,6 @@
             this.listBox_order.Name = "listBox_order";
             this.listBox_order.Size = new System.Drawing.Size(135, 108);
             this.listBox_order.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Karts";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 82);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Food";
-            // 
-            // comboBox_karts
-            // 
-            this.comboBox_karts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_karts.FormattingEnabled = true;
-            this.comboBox_karts.Location = new System.Drawing.Point(6, 47);
-            this.comboBox_karts.Name = "comboBox_karts";
-            this.comboBox_karts.Size = new System.Drawing.Size(135, 21);
-            this.comboBox_karts.TabIndex = 1;
             // 
             // Form1
             // 

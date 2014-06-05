@@ -15,7 +15,7 @@ namespace KARTOPIA_Customer
     {
         private OrderService OrderManager;
         private FoodCartService FoodCartManager;
-        List<FoodCartInfo> foodcarts;
+        BindingList<FoodCartInfo> foodcarts;
         private static Random rnd = new Random(1337);
 
         public Form1()
@@ -37,17 +37,13 @@ namespace KARTOPIA_Customer
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    OrderManager.submitOrder(randomOrder(cart), cart.cartID);
+                    //OrderManager.submitOrder(randomOrder(cart), cart.cartID);
                 }
             }
-
-            foodcarts = FoodCartManager.getFoodCarts();
-
-            foreach (FoodCartInfo fci in foodcarts)
-            {
-                comboBox_karts.Items.Add(fci);
-            }
-            
+            foodcarts = new BindingList<FoodCartInfo>(FoodCartManager.getFoodCarts());
+            comboBox_karts.DataSource = foodcarts;
+            comboBox_karts.DisplayMember = "name";
+            comboBox_karts.ValueMember = "cartID";
         }
 
         private static OrderDetails randomOrder(FoodCartInfo kart)
@@ -130,6 +126,16 @@ namespace KARTOPIA_Customer
             BoogerBurgers,
             WhatEvenIsThisFood,
             PortlandSoupCompany
+        }
+
+        private void button_placeOrder_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox_srch_TextChanged(object sender, EventArgs e)
+        {
+            //FoodCartManager.getFoodCartMenu(
         }
     }
 }
