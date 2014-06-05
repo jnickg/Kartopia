@@ -13,7 +13,16 @@ namespace K_Services
         public Guid submitOrder(OrderDetails details, Guid cartID)
         {
             Order instantiatedOrder = new Order(details);
-            _currentOrders[cartID].Add(instantiatedOrder);
+            if (_currentOrders.ContainsKey(cartID))
+            {
+                _currentOrders[cartID].Add(instantiatedOrder);
+            }
+            else
+            {
+                List<Order> newlist = new List<Order>();
+                newlist.Add(instantiatedOrder);
+                _currentOrders.Add(cartID, newlist);
+            }
             return instantiatedOrder.orderID;
         }
 
