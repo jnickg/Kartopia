@@ -113,6 +113,7 @@ namespace K_Services
     public class MenuItemInfo
     {
         Guid _itemID;
+        string _cartName;
         string _name = "MenuItemName";
         int _cost;
 
@@ -129,9 +130,10 @@ namespace K_Services
             this.cost = toCopy.cost;
         }
 
-        public MenuItemInfo(string name, int cost)
+        public MenuItemInfo(string name, int cost, string cartName)
         {
             this._itemID = Guid.NewGuid();
+            this._cartName = cartName;
             this._name = name;
             this._cost = cost;
         }
@@ -140,6 +142,27 @@ namespace K_Services
         {
             return _name;
         }
+
+        public string CostDisplayString
+        {
+            get
+            {
+                return String.Format("{0:C} - {1}",
+                    Decimal.Divide((decimal)this.cost, 100), this.name);
+            }
+        }
+
+        public string LongDisplayString
+        {
+            get
+            {
+                return String.Format("{0:C} - {1} ({2})",
+                    Decimal.Divide((decimal)this.cost, 100),
+                    this.name,
+                    this._cartName);
+            }
+        }
+
         /// <summary>
         /// The "database" GUID representing this Menu Item
         /// </summary>

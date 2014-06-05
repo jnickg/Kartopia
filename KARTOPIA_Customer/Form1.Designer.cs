@@ -84,7 +84,7 @@
             this.listBox_srch_rslt.FormattingEnabled = true;
             this.listBox_srch_rslt.Location = new System.Drawing.Point(6, 66);
             this.listBox_srch_rslt.Name = "listBox_srch_rslt";
-            this.listBox_srch_rslt.Size = new System.Drawing.Size(135, 56);
+            this.listBox_srch_rslt.Size = new System.Drawing.Size(261, 56);
             this.listBox_srch_rslt.TabIndex = 3;
             // 
             // buttonadd_srch
@@ -95,6 +95,7 @@
             this.buttonadd_srch.TabIndex = 2;
             this.buttonadd_srch.Text = "Add";
             this.buttonadd_srch.UseVisualStyleBackColor = true;
+            this.buttonadd_srch.Click += new System.EventHandler(this.buttonadd_srch_Click);
             // 
             // splitContainer1
             // 
@@ -113,7 +114,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2MinSize = 150;
-            this.splitContainer1.Size = new System.Drawing.Size(315, 208);
+            this.splitContainer1.Size = new System.Drawing.Size(434, 208);
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -169,7 +170,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(161, 208);
+            this.groupBox2.Size = new System.Drawing.Size(280, 208);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
@@ -187,7 +188,7 @@
             // 
             this.textBox_srch.Location = new System.Drawing.Point(7, 27);
             this.textBox_srch.Name = "textBox_srch";
-            this.textBox_srch.Size = new System.Drawing.Size(134, 20);
+            this.textBox_srch.Size = new System.Drawing.Size(260, 20);
             this.textBox_srch.TabIndex = 4;
             this.textBox_srch.TextChanged += new System.EventHandler(this.textBox_srch_TextChanged);
             // 
@@ -208,7 +209,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.groupBox3);
             this.splitContainer2.Panel2MinSize = 250;
-            this.splitContainer2.Size = new System.Drawing.Size(315, 462);
+            this.splitContainer2.Size = new System.Drawing.Size(434, 462);
             this.splitContainer2.SplitterDistance = 208;
             this.splitContainer2.TabIndex = 5;
             // 
@@ -222,7 +223,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(315, 250);
+            this.groupBox3.Size = new System.Drawing.Size(434, 250);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Current Order";
@@ -277,9 +278,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 462);
+            this.ClientSize = new System.Drawing.Size(434, 462);
             this.Controls.Add(this.splitContainer2);
-            this.MinimumSize = new System.Drawing.Size(315, 500);
+            this.MinimumSize = new System.Drawing.Size(450, 500);
             this.Name = "Form1";
             this.Text = "KARTOPIA Client";
             this.Load += new System.EventHandler(this.Form1_Load);

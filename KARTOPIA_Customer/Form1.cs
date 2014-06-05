@@ -27,7 +27,7 @@ namespace KARTOPIA_Customer
         private void Form1_Load(object sender, EventArgs e)
         {
             List<FoodCartInfo> carts = new List<FoodCartInfo>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 3; i++)
             {
                 carts.Add(randomFoodCart());
             }
@@ -70,21 +70,23 @@ namespace KARTOPIA_Customer
 
         private static FoodCartInfo randomFoodCart()
         {
+            FoodCartInfo rtn = new FoodCartInfo();
             Array values = Enum.GetValues(typeof(foodkart));
             foodkart randomkart = (foodkart)values.GetValue(rnd.Next(values.Length));
-            List<MenuItemInfo> foooood = new List<MenuItemInfo>();
-            for (int i = 0; i < 10; i++)
+            rtn.name = randomkart.ToString();
+            List<MenuItemInfo> foooood = rtn.menuItems;
+            for (int i = 0; i < 4; i++)
             {
-                foooood.Add(randomFood());
+                foooood.Add(randomFood(rtn));
             }
             return new FoodCartInfo(randomkart.ToString(), foooood);
         }
 
-        private static MenuItemInfo randomFood()
+        private static MenuItemInfo randomFood(FoodCartInfo kart)
         {
             Array values = Enum.GetValues(typeof(foodstuff));
             foodstuff randomfood = (foodstuff)values.GetValue(rnd.Next(values.Length));
-            return new MenuItemInfo(randomfood.ToString(), randomPrice());
+            return new MenuItemInfo(randomfood.ToString(), randomPrice(), kart.name);
         }
 
         private static int randomPrice()
@@ -146,7 +148,11 @@ namespace KARTOPIA_Customer
                     dic.Add(mii, 1);
                 }
             }
-            OrderManager.submitOrder(newOrder, Guid.NewGuid());
+            Guid orderID = OrderManager.submitOrder(newOrder, Guid.NewGuid());
+            currentOrder.Clear();
+            this.updateCost();
+            Form2 newOrderForm = new Form2(orderID, OrderManager);
+            newOrderForm.Show();
         }
 
         private void textBox_srch_TextChanged(object sender, EventArgs e)
@@ -154,7 +160,7 @@ namespace KARTOPIA_Customer
             List<MenuItemInfo> data = FoodCartManager.getMenuItemMatches(textBox_srch.Text);
             BindingList<MenuItemInfo> binder = new BindingList<MenuItemInfo>(data);
             listBox_srch_rslt.DataSource = binder;
-            listBox_srch_rslt.DisplayMember = "name";
+            listBox_srch_rslt.DisplayMember = "LongDisplayString";
         }
 
         private void comboBox_karts_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,7 +169,7 @@ namespace KARTOPIA_Customer
                 = new BindingList<MenuItemInfo>(
                     ((FoodCartInfo)comboBox_karts.SelectedItem).menuItems);
             comboBox_food.DataSource = binder;
-            comboBox_food.DisplayMember = "name";
+            comboBox_food.DisplayMember = "CostDisplayString";
             comboBox_food.ValueMember = "itemID";
         }
 
@@ -196,6 +202,12 @@ namespace KARTOPIA_Customer
         {
             MenuItemInfo rmv = listBox_order.SelectedItem as MenuItemInfo;
             currentOrder.Remove(rmv);
+            this.updateCost();
+        }
+
+        private void buttonadd_srch_Click(object sender, EventArgs e)
+        {
+            currentOrder.Add((MenuItemInfo)listBox_srch_rslt.SelectedItem);
             this.updateCost();
         }
     }
