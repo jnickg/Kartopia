@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button_rmv = new System.Windows.Forms.Button();
             this.listBox_order = new System.Windows.Forms.ListBox();
+            this.label_cost = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -213,6 +214,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label_cost);
             this.groupBox3.Controls.Add(this.button_placeOrder);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.button_rmv);
@@ -252,6 +254,7 @@
             this.button_rmv.TabIndex = 1;
             this.button_rmv.Text = "Remove Selected";
             this.button_rmv.UseVisualStyleBackColor = true;
+            this.button_rmv.Click += new System.EventHandler(this.button_rmv_Click);
             // 
             // listBox_order
             // 
@@ -260,6 +263,15 @@
             this.listBox_order.Name = "listBox_order";
             this.listBox_order.Size = new System.Drawing.Size(135, 108);
             this.listBox_order.TabIndex = 0;
+            // 
+            // label_cost
+            // 
+            this.label_cost.AutoSize = true;
+            this.label_cost.Location = new System.Drawing.Point(74, 198);
+            this.label_cost.Name = "label_cost";
+            this.label_cost.Size = new System.Drawing.Size(19, 13);
+            this.label_cost.TabIndex = 4;
+            this.label_cost.Text = "$0";
             // 
             // Form1
             // 
@@ -309,6 +321,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_karts;
+        private System.Windows.Forms.Label label_cost;
     }
 }
 

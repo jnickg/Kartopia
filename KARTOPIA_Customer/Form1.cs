@@ -16,6 +16,7 @@ namespace KARTOPIA_Customer
         private OrderService OrderManager;
         private FoodCartService FoodCartManager;
         BindingList<FoodCartInfo> foodcarts;
+        BindingList<MenuItemInfo> currentOrder = new BindingList<MenuItemInfo>();
         private static Random rnd = new Random(1337);
 
         public Form1()
@@ -44,6 +45,8 @@ namespace KARTOPIA_Customer
             comboBox_karts.DataSource = foodcarts;
             comboBox_karts.DisplayMember = "name";
             comboBox_karts.ValueMember = "cartID";
+            listBox_order.DataSource = currentOrder;
+            listBox_order.DisplayMember = "name";
         }
 
         private static OrderDetails randomOrder(FoodCartInfo kart)
@@ -130,12 +133,28 @@ namespace KARTOPIA_Customer
 
         private void button_placeOrder_Click(object sender, EventArgs e)
         {
-            
+            OrderDetails newOrder = new OrderDetails();
+            var dic = newOrder.itemAndQuantity;
+            foreach (MenuItemInfo mii in currentOrder)
+            {
+                if (dic.ContainsKey(mii))
+                {
+                    dic[mii]++;
+                }
+                else
+                {
+                    dic.Add(mii, 1);
+                }
+            }
+            OrderManager.submitOrder(newOrder, Guid.NewGuid());
         }
 
         private void textBox_srch_TextChanged(object sender, EventArgs e)
         {
-            //FoodCartManager.getFoodCartMenu(
+            List<MenuItemInfo> data = FoodCartManager.getMenuItemMatches(textBox_srch.Text);
+            BindingList<MenuItemInfo> binder = new BindingList<MenuItemInfo>(data);
+            listBox_srch_rslt.DataSource = binder;
+            listBox_srch_rslt.DisplayMember = "name";
         }
 
         private void comboBox_karts_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,9 +167,36 @@ namespace KARTOPIA_Customer
             comboBox_food.ValueMember = "itemID";
         }
 
+        private void updateCost()
+        {
+            OrderDetails costgetter = new OrderDetails();
+            var dic = costgetter.itemAndQuantity;
+            foreach (MenuItemInfo mii in currentOrder)
+            {
+                if (dic.ContainsKey(mii))
+                {
+                    dic[mii]++;
+                }
+                else
+                {
+                    dic.Add(mii, 1);
+                }
+            }
+            label_cost.Text = String.Format("{0:C}", Decimal.Divide((decimal)costgetter.TotalCost, 100)); 
+
+        }
+
         private void button_add_select_Click(object sender, EventArgs e)
         {
+            currentOrder.Add((MenuItemInfo)comboBox_food.SelectedItem);
+            this.updateCost();
+        }
 
+        private void button_rmv_Click(object sender, EventArgs e)
+        {
+            MenuItemInfo rmv = listBox_order.SelectedItem as MenuItemInfo;
+            currentOrder.Remove(rmv);
+            this.updateCost();
         }
     }
 }

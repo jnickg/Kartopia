@@ -38,9 +38,30 @@ namespace K_Services
     {
         Dictionary<MenuItemInfo, int> _itemAndQuantity;
 
+        public OrderDetails()
+        {
+            _itemAndQuantity = new Dictionary<MenuItemInfo, int>();
+        }
+
         public OrderDetails(Dictionary<MenuItemInfo, int> itemAndQuantity)
         {
             this._itemAndQuantity = itemAndQuantity;
+        }
+
+        /// <summary>
+        /// Calculates the total cost of the Order to be.
+        /// </summary>
+        public int TotalCost
+        {
+            get
+            {
+                int rtn = 0;
+                foreach (MenuItemInfo mii in _itemAndQuantity.Keys)
+                {
+                    rtn += mii.cost * _itemAndQuantity[mii];
+                }
+                return rtn;
+            }
         }
 
         /// <summary>
