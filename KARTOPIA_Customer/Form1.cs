@@ -17,7 +17,7 @@ namespace KARTOPIA_Customer
         private FoodCartService FoodCartManager;
         BindingList<FoodCartInfo> foodcarts;
         BindingList<MenuItemInfo> currentOrder = new BindingList<MenuItemInfo>();
-        private static Random rnd = new Random(1337);
+        private static Random rnd = new Random();
 
         public Form1()
         {
@@ -111,7 +111,27 @@ namespace KARTOPIA_Customer
             FriedRice,
             BanhMi,
             JackFruit,
-            GrilledCheese
+            GrilledCheese,
+            Soda,
+            TaterTots,
+            CheeseCurds,
+            PadThai,
+            Sandwich,
+            QuestionableBurger,
+            Nuts,
+            Chocolate,
+            FairyDust,
+            Bananas,
+            FruitSalad,
+            PotatoSalad,
+            RectifiedWaste,
+            NotYummyThings,
+            TripleSec,
+            StraightGin,
+            Water,
+            EmptyBox,
+            Disappointment,
+            WhatEvenHappenedToThisClassImSoLost
         }
 
         private enum foodkart
@@ -153,6 +173,7 @@ namespace KARTOPIA_Customer
                 }
             }
             Guid orderID = OrderManager.submitOrder(newOrder, Guid.NewGuid());
+            Console.WriteLine(String.Format("New order created: \"{0}\"", orderID));
             currentOrder.Clear();
             this.updateCost();
             Form2 newOrderForm = new Form2(orderID, OrderManager);

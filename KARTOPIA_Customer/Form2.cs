@@ -57,6 +57,7 @@ namespace KARTOPIA_Customer
             if (manager.requestCancel(order.orderID))
             {
                 MessageBox.Show("Order successfully canceled.", "Canceled");
+                Console.Write(String.Format("Order canceled: \"{0}\"", order.orderID));
                 this.Close();
             }
             else
@@ -67,7 +68,7 @@ namespace KARTOPIA_Customer
 
         private void timer_cookstart_Tick(object sender, EventArgs e)
         {
-            if (r.Next(0, 1000) < 37)
+            if (r.Next(0, 1500) < 37)
             {
                 int thisIndex = r.Next(order.itemAndIsStarted.Keys.Count);
                 var thisItem = order.itemAndIsStarted.Keys.ToList()[thisIndex];
