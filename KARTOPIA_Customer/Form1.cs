@@ -137,6 +137,10 @@ namespace KARTOPIA_Customer
         {
             OrderDetails newOrder = new OrderDetails();
             var dic = newOrder.itemAndQuantity;
+            if (currentOrder.Count == 0)
+            {
+                return;
+            }
             foreach (MenuItemInfo mii in currentOrder)
             {
                 if (dic.ContainsKey(mii))

@@ -52,7 +52,22 @@ namespace K_Services
 
         public bool requestCancel(Guid orderID)
         {
-            // Call something in K_OrderManager
+            foreach (var started in this.getOrder(orderID).itemAndIsStarted.Values)
+            {
+                if (started == Order.PrepStatus.NO_CANCEL)
+                    return false;
+            }
+            foreach (var k in this._currentOrders.Keys)
+            {
+                if (this._currentOrders[k].Contains(
+                    this.getOrder(orderID)))
+                {
+                    this._currentOrders[k].Remove(
+                        this.getOrder(orderID));
+                    return true;
+                }
+                else continue;
+            }
             return false;
         }
 

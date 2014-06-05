@@ -113,7 +113,7 @@ namespace K_Services
     public class MenuItemInfo
     {
         Guid _itemID;
-        string _cartName;
+        string _cartName = "CartName";
         string _name = "MenuItemName";
         int _cost;
 
@@ -126,6 +126,7 @@ namespace K_Services
         public MenuItemInfo(MenuItemInfo toCopy)
         {
             this.itemID = toCopy.itemID;
+            this.cartName = toCopy.cartName;
             this.name = toCopy.name;
             this.cost = toCopy.cost;
         }
@@ -171,6 +172,15 @@ namespace K_Services
         {
             get { return this._itemID; }
             set { this._itemID = value; }
+        }
+        /// <summary>
+        /// The cart from which this Menu Item came
+        /// </summary>
+        [DataMember]
+        public string cartName
+        {
+            get { return _cartName; }
+            set { _cartName = value; }
         }
         /// <summary>
         /// The name of this Menu Item

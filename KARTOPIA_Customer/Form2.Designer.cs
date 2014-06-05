@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label_submit = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label_dropoff = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.listBox_items = new System.Windows.Forms.ListBox();
+            this.button_cancel = new System.Windows.Forms.Button();
+            this.timer_cookstart = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -90,11 +93,26 @@
             this.listBox_items.Size = new System.Drawing.Size(242, 160);
             this.listBox_items.TabIndex = 5;
             // 
+            // button_cancel
+            // 
+            this.button_cancel.Location = new System.Drawing.Point(19, 285);
+            this.button_cancel.Name = "button_cancel";
+            this.button_cancel.Size = new System.Drawing.Size(75, 23);
+            this.button_cancel.TabIndex = 6;
+            this.button_cancel.Text = "CANCEL";
+            this.button_cancel.UseVisualStyleBackColor = true;
+            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            // 
+            // timer_cookstart
+            // 
+            this.timer_cookstart.Tick += new System.EventHandler(this.timer_cookstart_Tick);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 521);
+            this.ClientSize = new System.Drawing.Size(269, 331);
+            this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.listBox_items);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label_dropoff);
@@ -116,6 +134,8 @@
         private System.Windows.Forms.Label label_dropoff;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ListBox listBox_items;
+        private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.Timer timer_cookstart;
 
     }
 }
