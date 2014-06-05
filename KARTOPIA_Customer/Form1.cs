@@ -137,5 +137,20 @@ namespace KARTOPIA_Customer
         {
             //FoodCartManager.getFoodCartMenu(
         }
+
+        private void comboBox_karts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindingList<MenuItemInfo> binder
+                = new BindingList<MenuItemInfo>(
+                    ((FoodCartInfo)comboBox_karts.SelectedItem).menuItems);
+            comboBox_food.DataSource = binder;
+            comboBox_food.DisplayMember = "name";
+            comboBox_food.ValueMember = "itemID";
+        }
+
+        private void button_add_select_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

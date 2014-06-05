@@ -76,6 +76,7 @@
             this.button_add_select.TabIndex = 2;
             this.button_add_select.Text = "Add";
             this.button_add_select.UseVisualStyleBackColor = true;
+            this.button_add_select.Click += new System.EventHandler(this.button_add_select_Click);
             // 
             // listBox_srch_rslt
             // 
@@ -156,6 +157,7 @@
             this.comboBox_karts.Name = "comboBox_karts";
             this.comboBox_karts.Size = new System.Drawing.Size(135, 21);
             this.comboBox_karts.TabIndex = 1;
+            this.comboBox_karts.SelectedIndexChanged += new System.EventHandler(this.comboBox_karts_SelectedIndexChanged);
             // 
             // groupBox2
             // 
