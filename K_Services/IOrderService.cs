@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Diagnostics.Contracts;
 
 namespace K_Services
 {
@@ -45,6 +46,7 @@ namespace K_Services
 
         public OrderDetails(Dictionary<MenuItemInfo, int> itemAndQuantity)
         {
+            Contract.Requires((itemAndQuantity.Keys.Count > 0));
             this._itemAndQuantity = itemAndQuantity;
         }
 
@@ -92,6 +94,7 @@ namespace K_Services
 
         public Order(OrderDetails details)
         {
+            Contract.Requires(details.itemAndQuantity.Keys.Count > 0);
             this._orderID = Guid.NewGuid();
             this._paid = false;
             this._created = DateTime.Now;

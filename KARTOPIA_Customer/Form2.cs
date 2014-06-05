@@ -46,7 +46,6 @@ namespace KARTOPIA_Customer
                 else
                 {
                     item.Append(" - Being cooked");
-                    button_cancel.Enabled = false;
                 }
                 listBox_items.Items.Add(item);
             }
@@ -56,7 +55,8 @@ namespace KARTOPIA_Customer
         {
             if (manager.requestCancel(order.orderID))
             {
-                MessageBox.Show("Order successfully canceled.", "Canceled");
+                timer_cookstart.Stop();
+                MessageBox.Show("Order successfully canceled.\nFood Carts notified", "Canceled");
                 Console.Write(String.Format("Order canceled: \"{0}\"", order.orderID));
                 this.Close();
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Diagnostics.Contracts;
 
 namespace K_Services
 {
@@ -48,6 +49,7 @@ namespace K_Services
 
         public FoodCartInfo(string name, List<MenuItemInfo> menuItems)
         {
+            Contract.Requires((name != string.Empty) && menuItems.Count > 0);
             this._name = name;
             this._menuItems = menuItems;
             this._cartID = Guid.NewGuid();
@@ -133,6 +135,8 @@ namespace K_Services
 
         public MenuItemInfo(string name, int cost, string cartName)
         {
+            Contract.Requires((name != string.Empty) && (cost > 0),
+                "One cannot simply create a Menu item with no name or cost");
             this._itemID = Guid.NewGuid();
             this._cartName = cartName;
             this._name = name;
@@ -171,7 +175,11 @@ namespace K_Services
         public Guid itemID
         {
             get { return this._itemID; }
-            set { this._itemID = value; }
+            set
+            {
+                Contract.Requires(value != Guid.Empty);
+                this._itemID = value;
+            }
         }
         /// <summary>
         /// The cart from which this Menu Item came
@@ -189,7 +197,11 @@ namespace K_Services
         public string name
         {
             get { return _name; }
-            set { _name = value; }
+            set
+            {
+                Contract.Requires(value != string.Empty);
+                _name = value;
+            }
         }
         /// <summary>
         /// The cost in cents of this Menu Item
@@ -198,7 +210,11 @@ namespace K_Services
         public int cost
         {
             get { return _cost; }
-            set { _cost = value; }
+            set
+            {
+                Contract.Requires(value > 0);
+                _cost = value;
+            }
         }
     }
 }
